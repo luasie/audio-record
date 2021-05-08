@@ -15,7 +15,7 @@
     </div>
     <!-- <script src="./recorder.js"></script> -->
     <script src="./recorder.mp3.min.js"></script>
-    <script>
+    <!-- <script>
         const recordStartBtn = document.querySelector('.record-start-btn');
         const recordEndBtn = document.querySelector('.record-end-btn');
         var rec;
@@ -102,8 +102,8 @@
         }
         //这里假设立即运行，只录3秒，录完后立即播放，本段代码copy到控制台内可直接运行
         
-    </script>
-    <!-- <script>
+    </script> -->
+    <script>
         const recordBtn = document.querySelector(".record-btn");
         const player = document.querySelector(".audio-player");
         const container = document.querySelector('#container');
@@ -142,9 +142,15 @@
             mediaRecorder.onstop = e => {
                 var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
                 chunks = [];
-                var audioURL = window.URL.createObjectURL(blob);
-                document.getElementById('container').innerHTML = 'rul: ' + audioURL
-                player.src = audioURL;
+                var url = window.URL.createObjectURL(blob);
+                var audio=document.createElement("audio");
+                audio.controls=true;
+                document.body.appendChild(audio);
+                // var url = (window.URL||webkitURL).createObjectURL(blob);
+                var p = document.createElement('p');
+                p.textContent = `url ${url}`
+                document.body.appendChild(p)
+                audio.src=url
             };
             },
             () => {
@@ -155,6 +161,6 @@
         console.error("浏览器不支持 getUserMedia");
         }
 
-    </script> -->
+    </script>
 </body>
 </html>
