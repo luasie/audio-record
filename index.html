@@ -62,7 +62,7 @@
                 document.body.appendChild(audio);
                 //简单利用URL生成播放地址，注意不用了时需要revokeObjectURL，否则霸占内存
                 var url = (window.URL||webkitURL).createObjectURL(blob);
-                document.body.innerText = 'url: ' + url
+                document.body.appendChild(`<p>url ${url}</p>`)
                 audio.src=url
                 audio.play();
             },function(msg){
