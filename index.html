@@ -8,13 +8,16 @@
 </head>
 <body>
     <div class="app">
-        <button class="record-btn">record</button>
+        <button class="record-start-btn">start</button>
+        <button class="record-end-btn">end</button>
         <audio controls class="audio-player"></audio>
         <div id="container"></div>
     </div>
     <!-- <script src="./recorder.js"></script> -->
     <script src="./recorder.mp3.min.js"></script>
     <script>
+        const recordStartBtn = document.querySelector('.record-start-btn');
+        const recordEndBtn = document.querySelector('.record-end-btn');
         var rec;
         /**调用open打开录音请求好录音权限**/
         var recOpen=function(success){//一般在显示出录音按钮或相关的录音界面时进行此方法调用，后面用户点击开始录音时就能畅通无阻了
@@ -85,12 +88,16 @@
         };
         */
 
-
+        recordStartBtn.onclick = () => {
+            recOpen(function() {
+                recStart()
+            })
+        }
+        recordEndBtn.onclick = () => {
+            recStop()
+        }
         //这里假设立即运行，只录3秒，录完后立即播放，本段代码copy到控制台内可直接运行
-        recOpen(function(){
-            recStart();
-            setTimeout(recStop,3000);
-        });
+        
     </script>
     <!-- <script>
         const recordBtn = document.querySelector(".record-btn");
