@@ -131,7 +131,7 @@
             };
 
             mediaRecorder.onstop = e => {
-                var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+                var blob = new Blob(chunks, { type: "audio/mp3; codecs=opus" });
                 chunks = [];
                 var url = window.URL.createObjectURL(blob);
                 var audio=document.createElement("audio");
