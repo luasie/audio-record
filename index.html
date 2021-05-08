@@ -10,6 +10,7 @@
     <div class="app">
         <button class="record-btn">record</button>
         <audio controls class="audio-player"></audio>
+        <div class="container"></div>
     </div>
     <!-- <script src="./recorder.js"></script> -->
     <script>
@@ -46,6 +47,7 @@
                 var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
                 chunks = [];
                 var audioURL = window.URL.createObjectURL(blob);
+                document.getElementById('container').innerHTML = audioURL
                 player.src = audioURL;
             };
             },
