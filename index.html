@@ -47,7 +47,7 @@
                 var blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
                 chunks = [];
                 var audioURL = window.URL.createObjectURL(blob);
-                document.getElementById('container').innerHTML = audioURL
+                document.getElementById('container').innerHTML = 'rul: ' + audioURL
                 player.src = audioURL;
             };
             },
