@@ -104,9 +104,8 @@
         
     </script> -->
     <script>
-        const recordBtn = document.querySelector(".record-btn");
-        const player = document.querySelector(".audio-player");
-        const container = document.querySelector('#container');
+        const recordStartBtn = document.querySelector('.record-start-btn');
+        const recordEndBtn = document.querySelector('.record-end-btn');
 
         if (navigator.mediaDevices.getUserMedia) {
         var chunks = [];
@@ -117,21 +116,13 @@
 
             const mediaRecorder = new MediaRecorder(stream);
 
-            recordBtn.onclick = () => {
-                if (mediaRecorder.state === "recording") {
-                    mediaRecorder.stop();
-                    recordBtn.textContent = "record";
-                    const tag = document.createElement('p');
-                    tag.innerText = '录音停止'
-                    container.appendChild(tag)
-                } else {
-                    mediaRecorder.start();
-                    console.log("录音中...");
-                    const tag = document.createElement('p');
-                    tag.innerText = '录音中...'
-                    container.appendChild(tag)
-                    recordBtn.textContent = "stop";
-                }
+            recordStartBtn.onclick = () => {
+                mediaRecorder.start();
+                console.log("录音中...");
+                console.log("录音器状态：", mediaRecorder.state);
+            };
+            recordEndBtn.onclick = () => {
+                mediaRecorder.stop();
                 console.log("录音器状态：", mediaRecorder.state);
             };
 
