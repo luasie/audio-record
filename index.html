@@ -65,6 +65,11 @@
                 var p = document.createElement('p');
                 p.textContent = `url ${url}`
                 document.body.appendChild(p)
+                
+                var p2 = document.createElement('p');
+                p2.innerHTML = `<pre>${JSON.stringify(blob, null ,2)}</pre>`
+                document.body.appendChild(p2)
+
                 audio.src=url
                 audio.play();
             },function(msg){
