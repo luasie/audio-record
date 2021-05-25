@@ -15,7 +15,7 @@
     </div>
     <!-- <script src="./recorder.js"></script> -->
     <script src="./recorder.mp3.min.js"></script>
-    <!-- <script>
+    <script>
         const recordStartBtn = document.querySelector('.record-start-btn');
         const recordEndBtn = document.querySelector('.record-end-btn');
         var rec;
@@ -102,56 +102,57 @@
         }
         //这里假设立即运行，只录3秒，录完后立即播放，本段代码copy到控制台内可直接运行
         
-    </script> -->
-    <script>
+    </script>
+    <!-- <script>
         const recordStartBtn = document.querySelector('.record-start-btn');
         const recordEndBtn = document.querySelector('.record-end-btn');
 
         if (navigator.mediaDevices.getUserMedia) {
-        var chunks = [];
-        const constraints = { audio: true };
-        navigator.mediaDevices.getUserMedia(constraints).then(
-            stream => {
-            console.log("授权成功！");
+            var chunks = [];
+            const constraints = { audio: true };
+            navigator.mediaDevices.getUserMedia(constraints).then(
+                stream => {
+                    console.log("授权成功！");
 
-            const mediaRecorder = new MediaRecorder(stream);
+                    const mediaRecorder = new MediaRecorder(stream);
 
-            recordStartBtn.onclick = () => {
-                mediaRecorder.start();
-                console.log("录音中...");
-                console.log("录音器状态：", mediaRecorder.state);
-            };
-            recordEndBtn.onclick = () => {
-                mediaRecorder.stop();
-                console.log("录音器状态：", mediaRecorder.state);
-            };
+                    recordStartBtn.onclick = () => {
+                        mediaRecorder.start();
+                        console.log("录音中...");
+                        console.log("录音器状态：", mediaRecorder.state);
+                    };
+                    recordEndBtn.onclick = () => {
+                        mediaRecorder.stop();
+                        mediaRecorder.
+                        console.log("录音器状态：", mediaRecorder.state);
+                    };
 
-            mediaRecorder.ondataavailable = e => {
-                chunks.push(e.data);
-            };
+                    mediaRecorder.ondataavailable = e => {
+                        chunks.push(e.data);
+                    };
 
-            mediaRecorder.onstop = e => {
-                var blob = new Blob(chunks, { type: "audio/mp3" });
-                chunks = [];
-                // var url = window.URL.createObjectURL(blob);
-                var audio=document.createElement("audio");
-                audio.controls=true;
-                document.body.appendChild(audio);
-                var url = (window.URL||webkitURL).createObjectURL(blob);
-                var p = document.createElement('p');
-                p.textContent = `第一版url ${url}`
-                document.body.appendChild(p)
-                audio.src=url
-            };
-            },
-            () => {
-            console.error("授权失败！");
-            }
-        );
+                    mediaRecorder.onstop = e => {
+                        var blob = new Blob(chunks, { type: "audio/mp3" });
+                        chunks = [];
+                        // var url = window.URL.createObjectURL(blob);
+                        var audio=document.createElement("audio");
+                        audio.controls=true;
+                        document.body.appendChild(audio);
+                        var url = (window.URL||webkitURL).createObjectURL(blob);
+                        var p = document.createElement('p');
+                        p.textContent = `第一版url ${url}`
+                        document.body.appendChild(p)
+                        audio.src=url
+                    };
+                },
+                () => {
+                    console.error("授权失败！");
+                }
+            );
         } else {
-        console.error("浏览器不支持 getUserMedia");
+            console.error("浏览器不支持 getUserMedia");
         }
 
-    </script>
+    </script> -->
 </body>
 </html>
